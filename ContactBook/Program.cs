@@ -23,11 +23,12 @@ class Program
             switch (choice)
             {
                 case "1":
-                    var employees = employeeService.GetAllEmployess();
+                    var employees = employeeService.GetAllEmployees();
                     employeeService.DisplayEmployees(employees);
                     break;
                 case "2":
-                    employeeService.AddEmployee();
+                    var employee = employeeService.AddEmployeeView();
+                    employeeService.AddEmployee(employee);
                     break;
                 case "3":
                     var lastname = employeeService.SearchForEmployeesView();

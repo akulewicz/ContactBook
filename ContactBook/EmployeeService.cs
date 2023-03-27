@@ -33,8 +33,7 @@ namespace ContactBook
             Console.WriteLine();
         }
 
-
-        public int AddEmployee()
+        public Employee AddEmployeeView()
         {
             Console.WriteLine("Id pracownika: ");
             string idFromInput = Console.ReadLine();
@@ -51,19 +50,15 @@ namespace ContactBook
 
             Int32.TryParse(idFromInput, out int id);
 
-            Employee employee = new Employee()
-            {
-                Id = id,
-                FirstName = firstName,
-                LastName = lastName,
-                Departament = departament,
-                PhoneNumber = phoneNumber,
-                Email = email
-            };
+            var employee = new Employee(id, firstName, lastName, departament, phoneNumber, email);
 
+            return employee;
+        }
+
+
+        public void AddEmployee(Employee employee)
+        {
             Employees.Add(employee);
-
-            return id;
         }
 
 
@@ -87,7 +82,6 @@ namespace ContactBook
                 }
 
             }
-
         }
     }
 }

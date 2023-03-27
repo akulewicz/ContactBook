@@ -3,6 +3,16 @@ namespace ContactBook
 {
 	public class Employee
 	{
+		public Employee(int id, string firstName, string lastName, string departament, string phoneNumber, string email)
+		{
+			Id = id;
+			FirstName = firstName;
+			LastName = lastName;
+			Departament = departament;
+			PhoneNumber = phoneNumber;
+			Email = email;
+        }
+
 		public int Id { get; set; }
 
 		public string FirstName { get; set; }
