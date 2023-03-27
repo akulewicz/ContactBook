@@ -16,22 +16,26 @@ class Program
             Console.WriteLine();
             Console.WriteLine("1. Wyświetl wszystkich pracowników");
             Console.WriteLine("2. Dodaj pracownika");
+            Console.WriteLine("3. Wyszukaj pracownika");
             Console.WriteLine();
             string choice = Console.ReadLine();
 
             switch (choice)
             {
                 case "1":
-                    List<Employee> employees = employeeService.GetAllEmployess();
+                    var employees = employeeService.GetAllEmployess();
                     employeeService.DisplayEmployess(employees);
                     break;
                 case "2":
                     employeeService.AddEmployee();
                     break;
+                case "3":
+                    var lastname = employeeService.SearchForEmployessView();
+                    employeeService.SearchForEmployees(lastname);
+                    break;
                 default:
                     Console.WriteLine("Wybierz poprawną wartość");
                     break;
-
             }
 
         }

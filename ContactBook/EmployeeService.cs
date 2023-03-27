@@ -67,6 +67,29 @@ namespace ContactBook
 			return id;
 			
 		}
-	}
+
+
+		public string SearchForEmployessView()
+		{
+            Console.WriteLine("Podaj nazwisko pracownika: ");
+            string lastName = Console.ReadLine();
+			return lastName;
+        }
+
+		public void SearchForEmployees(string lastname)
+		{
+			var employees = GetAllEmployess();
+
+			foreach (var employee in employees)
+			{
+				if (employee.LastName == lastname)
+				{
+					DisplayEmployeeDetails(employee);
+                }
+				
+			}
+
+		}
+    }
 }
 
