@@ -24,13 +24,13 @@ class Program
             {
                 case "1":
                     var employees = employeeService.GetAllEmployess();
-                    employeeService.DisplayEmployess(employees);
+                    employeeService.DisplayEmployees(employees);
                     break;
                 case "2":
                     employeeService.AddEmployee();
                     break;
                 case "3":
-                    var lastname = employeeService.SearchForEmployessView();
+                    var lastname = employeeService.SearchForEmployeesView();
                     employeeService.SearchForEmployees(lastname);
                     break;
                 default:
