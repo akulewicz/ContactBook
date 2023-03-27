@@ -1,22 +1,40 @@
-﻿namespace ContactBook;
+﻿using System.Diagnostics.Metrics;
+
+namespace ContactBook;
 class Program
 {
     static void Main(string[] args)
     {
         EmployeeService employeeService = new EmployeeService();
 
+        Console.WriteLine("-------------------------------------");
+        Console.WriteLine("| Baza pracowników Najlepszej Firmy |");
+        Console.WriteLine("-------------------------------------");
+
         while (true)
         {
-            employeeService.AddEmployee();
+            Console.WriteLine();
+            Console.WriteLine("1. Wyświetl wszystkich pracowników");
+            Console.WriteLine("2. Dodaj pracownika");
+            Console.WriteLine();
+            string choice = Console.ReadLine();
 
-            List<Employee> employees = employeeService.GetAllEmployess();
-
-            foreach (var employee in employees)
+            switch (choice)
             {
-                Console.WriteLine($" {employee.Id} {employee.FirstName} {employee.LastName} {employee.Departament} ");
-            }
-        }
+                case "1":
+                    List<Employee> employees = employeeService.GetAllEmployess();
+                    employeeService.DisplayEmployess(employees);
+                    break;
+                case "2":
+                    employeeService.AddEmployee();
+                    break;
+                default:
+                    Console.WriteLine("Wybierz poprawną wartość");
+                    break;
 
+            }
+
+        }
         
     }
 }

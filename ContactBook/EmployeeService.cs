@@ -8,12 +8,31 @@ namespace ContactBook
 			Employees = new List<Employee>();
 		}
 
+
 		public List<Employee> Employees { get; set; }
+
 
 		public List<Employee> GetAllEmployess()
 		{
 			return Employees;
 		}
+
+
+		public void DisplayEmployeeDetails(Employee employee)
+		{
+			Console.WriteLine($"{employee.Id,4} | {employee.FirstName,-12} | {employee.LastName,-12} | {employee.Departament,-30} | {employee.PhoneNumber,-12} | {employee.Email,-20}");
+		}
+
+
+		public void DisplayEmployess(List<Employee> employees)
+		{
+			foreach (var employee in employees)
+			{
+				DisplayEmployeeDetails(employee);
+			}
+			Console.WriteLine();
+		}
+
 
 		public int AddEmployee()
 		{
