@@ -72,16 +72,35 @@ namespace ContactBook
 
         public void SearchForEmployees(string lastname)
         {
-            var employees = GetAllEmployees();
-
-            foreach (var employee in employees)
+            foreach (var employee in Employees)
             {
                 if (employee.LastName == lastname)
                 {
                     DisplayEmployeeDetails(employee);
                 }
-
             }
+        }
+
+        public int RemoveEmployeeView()
+        {
+            Console.WriteLine("Podaj id pracownika, którego chcesz usunąć:");
+            string idFromInput = Console.ReadLine();
+            Int32.TryParse(idFromInput, out int id);
+            return id;
+        }
+
+
+        public void RemoveEmployee(int id)
+        {
+            Employee employeeToRemove = new Employee(1, "", "", "", "", ""); 
+            foreach(var employee in Employees)
+            {
+                if(employee.Id == id)
+                {
+                    employeeToRemove = employee;
+                }
+            }
+            Employees.Remove(employeeToRemove);
         }
     }
 }
