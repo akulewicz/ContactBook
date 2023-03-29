@@ -90,12 +90,25 @@ namespace ContactBook
         }
 
 
-        public void RemoveEmployee(int id)
+        public Employee GetEmployeeById(int employeeId)
         {
-            Employee employeeToRemove = new Employee(1, "", "", "", "", ""); 
+            foreach (var employee in Employees)
+            {
+                if (employee.Id == employeeId)
+                {
+                    return employee;
+                }
+            }
+            return null;
+        }
+
+
+        public void RemoveEmployee(int employeeId)
+        {
+            Employee employeeToRemove = GetEmployeeById(employeeId); 
             foreach(var employee in Employees)
             {
-                if(employee.Id == id)
+                if(employee.Id == employeeId)
                 {
                     employeeToRemove = employee;
                 }
