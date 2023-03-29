@@ -18,6 +18,19 @@ namespace ContactBook
         }
 
 
+        private Employee GetEmployeeById(int employeeId)
+        {
+            foreach (var employee in Employees)
+            {
+                if (employee.Id == employeeId)
+                {
+                    return employee;
+                }
+            }
+            return null;
+        }
+
+
         public void DisplayEmployeeDetails(Employee employee)
         {
             Console.WriteLine($"{employee.Id,4} | {employee.FirstName,-12} | {employee.LastName,-12} | {employee.Departament,-30} | {employee.PhoneNumber,-12} | {employee.Email,-20}");
@@ -32,6 +45,7 @@ namespace ContactBook
             }
             Console.WriteLine();
         }
+
 
         public Employee AddEmployeeView()
         {
@@ -81,25 +95,13 @@ namespace ContactBook
             }
         }
 
+
         public int RemoveEmployeeView()
         {
             Console.WriteLine("Podaj id pracownika, którego chcesz usunąć:");
             string idFromInput = Console.ReadLine();
             Int32.TryParse(idFromInput, out int id);
             return id;
-        }
-
-
-        public Employee GetEmployeeById(int employeeId)
-        {
-            foreach (var employee in Employees)
-            {
-                if (employee.Id == employeeId)
-                {
-                    return employee;
-                }
-            }
-            return null;
         }
 
 
@@ -111,6 +113,7 @@ namespace ContactBook
                 if(employee.Id == employeeId)
                 {
                     employeeToRemove = employee;
+                    break;
                 }
             }
             Employees.Remove(employeeToRemove);

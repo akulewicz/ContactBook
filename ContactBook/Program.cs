@@ -18,6 +18,7 @@ class Program
             Console.WriteLine("2. Dodaj pracownika");
             Console.WriteLine("3. Wyszukaj pracownika");
             Console.WriteLine("4. Usuń pracownika");
+            Console.WriteLine("5. Wyjście z programu");
             Console.WriteLine();
             string choice = Console.ReadLine();
 
@@ -39,6 +40,8 @@ class Program
                     var id = employeeService.RemoveEmployeeView();
                     employeeService.RemoveEmployee(id);
                     break;
+                case "5":
+                    return;
                 default:
                     Console.WriteLine("Wybierz poprawną wartość");
                     break;
