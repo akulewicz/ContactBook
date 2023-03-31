@@ -13,13 +13,16 @@ class Program
 
         while (true)
         {
-            Console.WriteLine();
-            Console.WriteLine("1. Wyświetl wszystkich pracowników");
-            Console.WriteLine("2. Dodaj pracownika");
-            Console.WriteLine("3. Wyszukaj pracownika");
-            Console.WriteLine("4. Usuń pracownika");
-            Console.WriteLine("5. Wyjście z programu");
-            Console.WriteLine();
+            MenuActionService actionService = new MenuActionService();
+            actionService = Initialize(actionService);
+            var mainMenu = actionService.GetMenuActionsByMenyName("Main");
+
+            foreach (var item in mainMenu)
+            {
+                Console.WriteLine($"{item.Id}. {item.Name} ");
+            }
+
+            
             string choice = Console.ReadLine();
 
             switch (choice)
@@ -49,6 +52,17 @@ class Program
 
         }
         
+    }
+
+    public static MenuActionService Initialize(MenuActionService actionService)
+    {
+        actionService.AddNewAction(1, "Wyświetl wszystkich pracowników", "Main");
+        actionService.AddNewAction(2, "Dodaj pracownika", "Main");
+        actionService.AddNewAction(3, "Wyszukaj pracownika", "Main");
+        actionService.AddNewAction(4, "Usuń pracownik", "Main");
+        actionService.AddNewAction(5, "Wyjście", "Main");
+
+        return actionService;
     }
 }
 
