@@ -10,7 +10,7 @@ class Program
         actionService = Initialize(actionService);
         var mainMenu = actionService.GetMenuActionsByMenuName("Main");
 
-        Console.WriteLine("Hello, World!");
+        Console.WriteLine("Baza pracowników");
 
         while (true)
         {
