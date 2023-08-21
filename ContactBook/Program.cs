@@ -40,6 +40,10 @@ class Program
                     var newEmployeeId = employeeService.AddEmployee(employeeId);
                     break;
                 case 4:
+                    var updateId = employeeService.UpdateEmployeeSelectView();
+                    employeeService.UpdateEmployee(updateId);
+                    break;
+                case 5:
                     var removeId = employeeService.RemoveEmployeeView();
                     employeeService.RemoveEmployee(removeId);
                     break;
@@ -55,7 +59,8 @@ class Program
         actionService.AddNewAction(1, "Wyświetl listę pracowników", "Main");
         actionService.AddNewAction(2, "Wyświetl szczegóły pracownika", "Main");
         actionService.AddNewAction(3, "Dodaj pracownika", "Main");
-        actionService.AddNewAction(4, "Usuń pracownika", "Main");
+        actionService.AddNewAction(4, "Edytuj pracownika", "Main");
+        actionService.AddNewAction(5, "Usuń pracownika", "Main");
 
         return actionService;
     }
