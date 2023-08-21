@@ -10,7 +10,9 @@ class Program
         actionService = Initialize(actionService);
         var mainMenu = actionService.GetMenuActionsByMenuName("Main");
 
-        Console.WriteLine("Baza pracowników");
+        Console.WriteLine("-------------------------------------");
+        Console.WriteLine("| Baza pracowników Najlepszej Firmy |");
+        Console.WriteLine("-------------------------------------");
 
         while (true)
         {
@@ -30,15 +32,19 @@ class Program
                     employeeService.DisplayEmployees(employees);
                     break;
                 case 2:
-                    Console.WriteLine("Wyświetl szczegóły wybranego pracownika");
+                    var detailId = employeeService.EmployeeDetailSelectionView();
+                    employeeService.EmployeeDetailView(detailId);
                     break;
                 case 3:
-                    Console.WriteLine("Dodaj pracownika");
-                    var employee = employeeService.AddEmployeeView();
-                    employeeService.AddEmployee(employee);
+                    var employeeId = employeeService.AddEmployeeView();
+                    var newEmployeeId = employeeService.AddEmployee(employeeId);
+                    break;
+                case 4:
+                    var removeId = employeeService.RemoveEmployeeView();
+                    employeeService.RemoveEmployee(removeId);
                     break;
                 default:
-                    Console.WriteLine("Usuń pracownika");
+                    Console.WriteLine("Nieprawidłowa opcja");
                     break;
             }
         }

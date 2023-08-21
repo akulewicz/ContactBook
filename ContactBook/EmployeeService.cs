@@ -7,14 +7,27 @@ namespace ContactBook
     {
         public EmployeeService()
         {
-            employees = new List<Employee>();
+            Employees = new List<Employee>();
         }
 
-        List<Employee> employees;
+        public List<Employee> Employees { get; set; }
 
         public List<Employee> GetAllEmployees()
         {
-            return employees;
+            return Employees;
+        }
+
+        public Employee GetEmployeeById(int employeeId)
+        {
+            Employee employeeToFind = new Employee();
+            foreach (var employee in GetAllEmployees())
+            {
+                if (employee.Id == employeeId)
+                {
+                    employeeToFind = employee;
+                }
+            }
+            return employeeToFind;
         }
 
         public void DisplayEmployees(List<Employee> employees)
@@ -44,17 +57,52 @@ namespace ContactBook
             string email = Console.ReadLine();
             Console.WriteLine("Telefon: ");
             string phoneNumber = Console.ReadLine();
+            Console.WriteLine("Opis: ");
+            string description = Console.ReadLine();
 
-            Int32.TryParse(idFromInput, out int id);
+            int.TryParse(idFromInput, out int id);
 
-            Employee employee = new Employee() { Id = id, FirstName = firstName, LastName = lastName, Departament = departament, Email = email, PhoneNumber = phoneNumber };
+            Employee employee = new Employee() { Id = id, FirstName = firstName, LastName = lastName, Departament = departament, Email = email, PhoneNumber = phoneNumber, Description = description };
 
             return employee;
         }
 
-        public void AddEmployee(Employee employee)
+        public int AddEmployee(Employee employee)
         {
-            employees.Add(employee);
+            Employees.Add(employee);
+            return employee.Id;
+        }
+
+        public int EmployeeDetailSelectionView()
+        {
+            Console.WriteLine("Podaj id pracownika: ");
+            string idFromInput = Console.ReadLine();
+            int.TryParse(idFromInput, out int id);
+            return id;
+        }
+
+        public void EmployeeDetailView(int employeeId)
+        {
+            var employee = GetEmployeeById(employeeId);
+
+            var table = new ConsoleTable("Id", "Imię", "Nazwisko", "Dział", "Email", "Telefon", "Opis");
+            table.AddRow(employee.Id, employee.FirstName, employee.LastName, employee.Departament, employee.Email, employee.PhoneNumber, employee.Description);
+            table.Write();
+            Console.WriteLine();
+        }
+
+        public int RemoveEmployeeView()
+        {
+            Console.WriteLine("Podaj id pracownika, którego chcesz usunąć: ");
+            string idFromInput = Console.ReadLine();
+            int.TryParse(idFromInput, out int id);
+            return id;
+        }
+
+        public void RemoveEmployee(int id)
+        {
+            var employee = GetEmployeeById(id);
+            Employees.Remove(employee);
         }
     }
 }
